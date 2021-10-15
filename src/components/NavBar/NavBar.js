@@ -3,7 +3,7 @@ import './Navbar.css'
 import { Nav, Form, Button, Navbar } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
-const NavBar = () => {
+const NavBar = ({ isAuth, login, logout }) => {
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -12,12 +12,14 @@ const NavBar = () => {
                     <Nav className="mr-auto">
                         <Link to='/' className="appLink" activeClassName="activeLink">Home</Link>
                         <Link to='/users' className="appLink" activeClassName="activeLink">users</Link>
-                        <Link className="appLink" activeClassName="activeLink">Admin</Link>
+                        <Link to='/admin' className="appLink" activeClassName="activeLink">Admin</Link>
                     </Nav>
                 </div>
                 <Form inline>
                     <Button variant="outline-info" className="loginBtn"
-                    >login</Button>
+                        onClick={() => isAuth ? logout() : login()}>
+                        {isAuth ? "logout" : "login"}
+                    </Button>
                 </Form>
             </Navbar>
         </div>
